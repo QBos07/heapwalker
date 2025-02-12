@@ -1,0 +1,43 @@
+[
+  {
+    "arguments": [
+      "/toolchain/bin/sh4aeb-elf-gcc",
+      "-c",
+      "",
+      "-gdwarf-5",
+      "-o",
+      "obj/src/hhk_defines.o",
+      "src/hhk_defines.S"
+    ],
+    "directory": "/workspaces/heapwalker",
+    "file": "/workspaces/heapwalker/src/hhk_defines.S",
+    "output": "/workspaces/heapwalker/obj/src/hhk_defines.o"
+  },
+  {
+    "arguments": [
+      "/toolchain/bin/sh4aeb-elf-g++",
+      "-c",
+      "-std=c++20",
+      "-fno-exceptions",
+      "-Wno-write-strings",
+      "-flto",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-gdwarf-5",
+      "-Og",
+      "",
+      "-Wall",
+      "-Wextra",
+      "-Wno-main",
+      "-pedantic",
+      "-Werror",
+      "-pedantic-errors",
+      "-o",
+      "obj/src/main.o",
+      "src/main.cpp"
+    ],
+    "directory": "/workspaces/heapwalker",
+    "file": "/workspaces/heapwalker/src/main.cpp",
+    "output": "/workspaces/heapwalker/obj/src/main.o"
+  }
+]
