@@ -79,11 +79,13 @@ int main() {
     std::printf("%" PRIu32 " blocks\n", depth);
   }
   {
-    auto free_list_head = reinterpret_cast<HeapBlock *>(reinterpret_cast<intptr_t>(os::allocate_memory(0)) + HEADER_SIZE);
+    //auto free_list_head = reinterpret_cast<HeapBlock *>(reinterpret_cast<intptr_t>(os::allocate_memory(0)) + HEADER_SIZE);
     std::printf("Prepare Heap: \n");
     auto small = os::malloc(1024);
+    asm volatile ("" : : "r" (small)); // block
     std::printf("malloc(1k) = %p\n", small);
     auto big = os::malloc(4096);
+    asm volatile ("" : : "r" (small), "r" (big)); // block
     std::printf("malloc(4k) = %p\n", big);
     os::free(small);
     std::printf("free(small)\n");
@@ -92,11 +94,11 @@ int main() {
     std::printf("donate(2k, big+1k)\n");
     std::printf("Traversing free list:\n");
     auto depth =
-        traverse_free_list(reinterpret_cast<HeapBlock *>(free_list_head));
+        traverse_free_list(reinterpret_cast<HeapBlock *>(*free_list_head));
     std::printf("%" PRIu32 " blocks\n", depth);
     os::donate_memory(1024, big);
     std::printf("donate(1k, big)\n");
-    os::donate_memory(2024, reinterpret_cast<void *>(reinterpret_cast<intptr_t>(donate) + 2048));
+    os::donate_memory(2048, reinterpret_cast<void *>(reinterpret_cast<intptr_t>(donate) + 2048));
     std::printf("donate(1k, big+3k)\n");
   }
 

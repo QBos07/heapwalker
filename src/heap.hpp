@@ -12,7 +12,7 @@ typedef struct HeapBlock {
 static_assert(sizeof(HeapBlock) == 8, "block size does not match");
 #endif
 
-const auto free_list_head = reinterpret_cast<HeapBlock *>(0x8C1A35F0);
+const auto free_list_head = reinterpret_cast<HeapBlock **>(0x8C1A35F0);
 const auto heap_ptr = reinterpret_cast<void **>(0x8C2233A0);
 const auto heap_max_barrier = reinterpret_cast<void *>(0x8CE80001);
 const auto heap_start = reinterpret_cast<void *>(0x8C280000);
