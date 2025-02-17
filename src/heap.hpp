@@ -22,8 +22,8 @@ constexpr std::size_t MALLOC_ALIGN = 4;
 constexpr std::size_t MAX_BLOCK_SIZE = 0x7FFFFFFF;
 constexpr std::size_t HEADER_SIZE = sizeof(HeapBlock::size);
 const std::size_t HEAP_SIZE =
-    (reinterpret_cast<std::intptr_t>(heap_max_barrier) - 1) -
-    reinterpret_cast<std::intptr_t>(heap_start);
+    (reinterpret_cast<std::uintptr_t>(heap_max_barrier) - 1) -
+    reinterpret_cast<std::uintptr_t>(heap_start);
 
 namespace os {
 // includes error handling
